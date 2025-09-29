@@ -1,93 +1,32 @@
-'use client';
+import Image from "next/image";
+import Link from "next/link";
+import SidebarButton from "./components/ui/sidebar-button";
 
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { FlagTriangleLeft } from 'lucide-react';
-import { useEffect, useState } from 'react';
-
-type Expense = {
-  id: string;
-  total: number;
-  friends: number;
-  amountPerPerson: number;
-  status: 'optimistic' | 'success' | 'failed';
-};
-
-const currencies = ['VND', 'USD'] as const;
-type Currency = (typeof currencies)[number];
-type FriendExpenses = {
-  name: string;
-  amount: number;
-};
-
-export default function ExpenseSplitter() {
-  const [currency, setCurrency] = useState<Currency>('USD');
-  const [friendExpenses, setFriendExpenses] = useState<FriendExpenses[]>([
-    { name: '', amount: 0 },
-    { name: '', amount: 0 },
-  ]);
-
-  const updateFriendExpense = <K extends keyof FriendExpenses>(index: number, field: K, value: FriendExpenses[K]) => {
-    setFriendExpenses((prev) =>
-      prev.map((expense, i) =>
-        i === index ? { ...expense, [field]: field === 'amount' ? Number(value) : value } : expense
-      )
-    );
-  };
-
-  const formatByCurrency = (amount: number, currency: Currency) => {
-    return new Intl.NumberFormat('de-DE').format(amount);
-  };
-
-  useEffect(() => {
-    console.log('Selected currency:', currency);
-    console.log('Friend expenses:', friendExpenses);
-  }, [currency, friendExpenses]);
-
+export default function HomePage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-50 p-6">
-      <div className="max-w-lg w-full space-y-6 bg-white shadow rounded-2xl p-6">
-        <div className="flex justify-between">
-          <h1 className="font-bold text-2xl ">Expense Splitter 🍃</h1>
-          {/* Select currency */}
-          <Select onValueChange={(value) => setCurrency(value as Currency)} defaultValue="USD">
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {currencies.map((cur) => (
-                <SelectItem key={cur} value={cur}>
-                  {cur}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+    <nav className="flex items-center justify-between space-x-1 bg-black text-white p-2 opacity-95">
+      {/* Left side */}
+      <Link href="/expense-cal" className="flex items-center">
+        <div className="flex items-center justify-center">
+          <Image src="/web-icon.png" alt="web icon" width={40} height={40} className="rotate-[30deg]" />
         </div>
+        <span className="text-lg font-semibold">Utilities</span>
+      </Link>
 
-        {/* Input fields */}
-        {friendExpenses.map((friend, index) => (
-          <div key={index} className="flex flex-row mb-2 gap-2">
-            <Input
-              type="text"
-              placeholder="name"
-              className="flex-3"
-              value={friend.name}
-              onChange={(e) => {
-                e.target.value && updateFriendExpense(index, 'name', e.target.value);
-              }}
-            />
-            <Input
-              type="number"
-              placeholder="amount"
-              className="flex-1"
-              value={formatByCurrency(friend.amount, currency)}
-              onChange={(e) => {
-                e.target.value && updateFriendExpense(index, 'amount', Number(e.target.value.replace(/\./g, '')));
-              }}
-            />
-          </div>
-        ))}
+      {/* Center */}
+      <div className="flex space-x-8 ">
+        <SidebarButton href="#" name="Product 1" />
+        <SidebarButton href="#" name="Product 2" />
+        <SidebarButton href="#" name="Product 3" />
+        <SidebarButton href="#" name="Product 4" />
+        <SidebarButton href="#" name="Product 5" />
       </div>
-    </main>
+
+      {/* Right side */}
+      <div className="flex space-x-1 items-center text-sm font-semibold">
+        <a href="#" className="hover:bg-white hover:opacity-20 rounded-[8px] p-[6px] hover:text-black transition-all duration-300">Log in</a>
+        <a href="#" className="hover:opacity-100 transition-opacity duration-300 bg-white text-black rounded-[8px] p-[6px] opacity-50">Sign up</a>
+      </div>
+    </nav >
   );
 }
