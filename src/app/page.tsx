@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import SidebarButton from './components/ui/sidebar-button';
+import { ROUTES } from '@/lib/routes';
 
 export default function HomePage() {
   return (
     <nav className="flex items-center justify-between space-x-1 bg-black text-white p-2 opacity-95">
       {/* Left side */}
-      <Link href="/expense-cal" className="flex items-center">
+      <Link href={ROUTES.EXPENSE_CALCULATOR} className="flex items-center">
         <div className="flex items-center justify-center">
           <Image src="/web-icon.png" alt="web icon" width={40} height={40} className="rotate-[30deg]" />
         </div>
@@ -14,7 +15,7 @@ export default function HomePage() {
       </Link>
 
       {/* Center */}
-      <div className="flex space-x-8 ">
+      <div className="flex space-x-8">
         <SidebarButton href="#" name="Product 1" />
         <SidebarButton href="#" name="Product 2" />
         <SidebarButton href="#" name="Product 3" />
