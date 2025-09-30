@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import SidebarButton from "./components/ui/sidebar-button";
+import Image from 'next/image';
+import Link from 'next/link';
+import SidebarButton from './components/ui/sidebar-button';
 
 export default function HomePage() {
   return (
@@ -24,9 +24,17 @@ export default function HomePage() {
 
       {/* Right side */}
       <div className="flex space-x-1 items-center text-sm font-semibold">
-        <a href="#" className="hover:bg-white hover:opacity-20 rounded-[8px] p-[6px] hover:text-black transition-all duration-300">Log in</a>
-        <a href="#" className="hover:opacity-100 transition-opacity duration-300 bg-white text-black rounded-[8px] p-[6px] opacity-50">Sign up</a>
+        <a
+          href="#"
+          className="hover:bg-white hover:opacity-20 rounded-[8px] p-[6px] hover:text-black transition-all duration-300">
+          Log in
+        </a>
+        <a
+          href="#"
+          className="hover:opacity-100 transition-opacity duration-300 bg-white text-black rounded-[8px] p-[6px] opacity-50">
+          Sign up
+        </a>
       </div>
-    </nav >
+    </nav>
   );
 }
