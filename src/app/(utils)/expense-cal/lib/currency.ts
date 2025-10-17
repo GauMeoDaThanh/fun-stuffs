@@ -6,7 +6,6 @@ interface CurrencyConfig {
   displayMultiplier: number; // multiply user input by this to get actual value
   decimalPlaces: number;
   locale: string;
-  name: string;
 }
 
 export const currencyConfig: Record<Currency, CurrencyConfig> = {
@@ -15,14 +14,12 @@ export const currencyConfig: Record<Currency, CurrencyConfig> = {
     displayMultiplier: 1000, // User types 100 → 100,000 VND
     decimalPlaces: 0,
     locale: 'vi-VN',
-    name: 'Vietnamese Đồng',
   },
   USD: {
     symbol: '$',
     displayMultiplier: 1, // User types 100 → 100 USD
     decimalPlaces: 2,
     locale: 'en-US',
-    name: 'US Dollar',
   },
 };
 
