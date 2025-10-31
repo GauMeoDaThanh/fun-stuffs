@@ -86,7 +86,7 @@ export default function CloneEnvExample() {
               <h3 className="text-sm font-semibold text-blue-900 mb-2">How it works:</h3>
               <ul className="text-xs text-blue-700 space-y-1">
                 <li>• Automatically converts env variables as you type</li>
-                <li>• Removes values and replaces them with "..."</li>
+                <li>• Removes values and replaces them with &quot;...&quot;</li>
                 <li>• Preserves comments and empty lines</li>
                 <li>• Supports single quotes, double quotes, or no quotes</li>
                 <li>• Perfect for creating .env.example files from your .env</li>

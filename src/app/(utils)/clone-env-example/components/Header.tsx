@@ -13,7 +13,7 @@ export function Header() {
         Convert your environment variables to .env.example format
       </p>
       <div className="flex items-center justify-center gap-2 text-xs text-gray-500">
-        <code className="px-2 py-1 bg-gray-100 rounded">POSTGRES_DB='echatbot'</code>
+        <code className="px-2 py-1 bg-gray-100 rounded">POSTGRES_DB=&apos;echatbot&apos;</code>
         <ArrowRight className="h-3 w-3" />
         <code className="px-2 py-1 bg-gray-100 rounded">POSTGRES_DB=...</code>
       </div>
