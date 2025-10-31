@@ -10,6 +10,7 @@ const navItems = [
   { label: 'Home', href: ROUTES.HOME },
   { label: 'Expense Calculator', href: ROUTES.EXPENSE_CALCULATOR },
   { label: 'Unit Converter', href: ROUTES.UNIT_CONVERTER },
+  { label: 'Env converter', href: ROUTES.CLONE_ENV_EXAMPLE },
 ];
 
 export default function Navbar() {
@@ -40,8 +41,7 @@ export default function Navbar() {
                   isActive(item.href)
                     ? 'bg-blue-100 text-blue-700'
                     : 'text-gray-700 hover:bg-gray-100'
-                }`}
-              >
+                }`}>
                 {item.label}
               </Link>
             ))}
@@ -50,8 +50,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="rounded-lg p-2 text-gray-700 hover:bg-gray-100 md:hidden"
-          >
+            className="rounded-lg p-2 text-gray-700 hover:bg-gray-100 md:hidden">
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
@@ -69,8 +68,7 @@ export default function Navbar() {
                     isActive(item.href)
                       ? 'bg-blue-100 text-blue-700'
                       : 'text-gray-700 hover:bg-gray-100'
-                  }`}
-                >
+                  }`}>
                   {item.label}
                 </Link>
               ))}
