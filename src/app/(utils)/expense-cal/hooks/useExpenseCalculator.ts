@@ -20,7 +20,10 @@ type CurrencyConfig = {
   locale: string;
 };
 
-export function useExpenseCalculator(currency: Currency, splitMethod: 'equal' | 'percentage') {
+export function useExpenseCalculator(
+  currency: Currency,
+  splitMethod: 'equal' | 'percentage'
+) {
   const [friendExpenses, setFriendExpenses] = useState<FriendExpenses[]>([
     { name: '', displayAmount: 0, percentage: 50 },
     { name: '', displayAmount: 0, percentage: 50 },
@@ -29,7 +32,8 @@ export function useExpenseCalculator(currency: Currency, splitMethod: 'equal' | 
 
   const config = currencyConfig[currency];
 
-  const getActualAmount = (displayAmount: number) => displayAmount * config.displayMultiplier;
+  const getActualAmount = (displayAmount: number) =>
+    displayAmount * config.displayMultiplier;
 
   const updateFriendExpense = <K extends keyof FriendExpenses>(
     index: number,
@@ -41,14 +45,16 @@ export function useExpenseCalculator(currency: Currency, splitMethod: 'equal' | 
       const currentExpense = { ...newExpenses[index] };
 
       if (field === 'name') {
-        const trimmedValue = String(value).trim();
+        const stringValue = String(value);
         const isDuplicate = prev.some(
           (expense, i) =>
-            i !== index && expense.name.trim().toLowerCase() === trimmedValue.toLowerCase()
+            i !== index &&
+            expense.name.trim().toLowerCase() ===
+              stringValue.trim().toLowerCase()
         );
 
         if (!isDuplicate) {
-          currentExpense.name = trimmedValue;
+          currentExpense.name = stringValue;
           newExpenses[index] = currentExpense;
         }
         return newExpenses;
@@ -77,7 +83,8 @@ export function useExpenseCalculator(currency: Currency, splitMethod: 'equal' | 
     setFriendExpenses((prev) => {
       const currentValidMembers = prev.filter((m) => m.name.trim());
       const remainingPercentage =
-        100 - currentValidMembers.reduce((sum, m) => sum + (m.percentage || 0), 0);
+        100 -
+        currentValidMembers.reduce((sum, m) => sum + (m.percentage || 0), 0);
 
       return [
         ...prev,
@@ -103,7 +110,9 @@ export function useExpenseCalculator(currency: Currency, splitMethod: 'equal' | 
 
     if (validMembers.length < 2) return;
 
-    const uniqueNames = new Set(validMembers.map((m) => m.name.trim().toLowerCase()));
+    const uniqueNames = new Set(
+      validMembers.map((m) => m.name.trim().toLowerCase())
+    );
     if (uniqueNames.size !== validMembers.length) return;
 
     const totalExpense = validMembers.reduce(
@@ -168,7 +177,9 @@ function calculateTransfers(
   config: CurrencyConfig
 ): Settlement[] {
   const debtors = balances.filter((b) => b.balance < 0).map((b) => ({ ...b }));
-  const creditors = balances.filter((b) => b.balance > 0).map((b) => ({ ...b }));
+  const creditors = balances
+    .filter((b) => b.balance > 0)
+    .map((b) => ({ ...b }));
 
   const newSettlements: Settlement[] = [];
 
