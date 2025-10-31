@@ -5,5 +5,6 @@ export const ROUTES = {
   HOME: '/',
   EXPENSE_CALCULATOR: '/expense-cal',
   UNIT_CONVERTER: '/unit-converter',
+  CLONE_ENV_EXAMPLE: '/clone-env-example',
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 } as const satisfies Record<string, any>;
